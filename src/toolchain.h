@@ -11,12 +11,12 @@
 #define IDATA_SEG __idata
 #define PDATA_SEG __pdata
 #define CODE_SEG __code
-#define SFR(a,b) __sfr __at(b) a
-#define SBIT(a,b) __sbit __at(b) a
+// #define SFR(a,b) __sfr __at(b) a
+// #define SBIT(a,b) __sbit __at(b) a
 #define BIT __bit 
-#define INTERRUPT __interrupt 
+// #define INTERRUPT __interrupt 
 
-#else
+#elif defined KEIL
 
 #define XDATA_SEG xdata
 #define IDATA_SEG idata
@@ -25,7 +25,8 @@
 #define SFR(a,b) sfr a = b
 #define SBIT(a,b) sbit a = b
 #define BIT bit 
-#define INTERRUPT interrupt
+#define INTERRUPT(name, vector) void name (void) interrupt vector
+#define INTERRUPT_USING(name, vector, regnum) void name (void) interrupt vector using regnum
 
 #endif
 

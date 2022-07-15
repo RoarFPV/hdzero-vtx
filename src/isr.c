@@ -66,7 +66,7 @@ void CPU_init(void)
     
 }
 
-void Timer0_isr(void) INTERRUPT 1
+INTERRUPT(Timer0_isr, 1)
 {
     TH0 = 138;
 
@@ -84,21 +84,21 @@ void Timer0_isr(void) INTERRUPT 1
     timer_ms10x++;
 }
 
-void Timer1_isr(void) INTERRUPT 3
+INTERRUPT( Timer1_isr, 3)
 {
 }		 
 
-void Ext0_isr(void) INTERRUPT 0
+INTERRUPT( Ext0_isr, 0)
 {
 	int0_req = 1;
 }
 
-void Ext1_isr(void) INTERRUPT 2
+INTERRUPT( Ext1_isr, 2)
 {
 	int1_req = 1;
 }
 
-void UART0_isr() INTERRUPT 4
+INTERRUPT( UART0_isr, 4)
 {
 	if( RI ) {			//RX int
 		RI = 0;
@@ -113,7 +113,7 @@ void UART0_isr() INTERRUPT 4
 	}
 }
 
-void UART1_isr() INTERRUPT 6
+INTERRUPT( UART1_isr, 6)
 {
     
 	if( RI1 ) {			//RX int
